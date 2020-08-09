@@ -1,6 +1,8 @@
-﻿namespace RustApi.ClientNet.Models
+﻿using RustApi.ClientNet.Interfaces;
+
+namespace RustApi.ClientNet.Models
 {
-    public class Connection
+    public class Connection: IConnection
     {
         
     }
