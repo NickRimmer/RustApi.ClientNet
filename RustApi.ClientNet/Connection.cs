@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RustApi.ClientNet.Interfaces;
+using RustApi.ClientNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using RustApi.ClientNet.Interfaces;
-using RustApi.ClientNet.Models;
 
 namespace RustApi.ClientNet
 {
     /// <inheritdoc />
-    public class Connection: IConnection
+    public class Connection : IConnection
     {
         private const string UserHeaderName = "ra_u";
         private const string SecretHeaderName = "ra_s";
@@ -23,17 +23,18 @@ namespace RustApi.ClientNet
         }
 
         /// <inheritdoc />
-        public async Task SendCommandAsync(Dictionary<string, object> parameters = null)
+        public async Task SendCommandAsync(string commandName, Dictionary<string, object> parameters = null)
         {
-            await SendCommandAsync<string>(parameters);
+            await SendCommandAsync<string>(commandName, parameters);
         }
 
         /// <inheritdoc />
-        public Task<TResponse> SendCommandAsync<TResponse>(Dictionary<string, object> parameters) where TResponse: class
+        public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters) where TResponse : class
         {
             const string route = "command";
-            var result = PostDataAsync<TResponse>(route, parameters);
+            var requestData = new ApiCommandRequest(commandName, parameters);
 
+            var result = PostDataAsync<TResponse[]>(route, requestData);
             return result;
         }
 
@@ -44,7 +45,7 @@ namespace RustApi.ClientNet
         /// <param name="route">Endpoint url.</param>
         /// <param name="data">Data to send.</param>
         /// <returns></returns>
-        private async Task<TResponse> PostDataAsync<TResponse>(string route, object data = default) where TResponse: class
+        private async Task<TResponse> PostDataAsync<TResponse>(string route, object data = default) where TResponse : class
         {
             using (var client = BuildClient())
             {
@@ -82,7 +83,7 @@ namespace RustApi.ClientNet
         /// <typeparam name="TResponse">Expected response type.</typeparam>
         /// <param name="clientResponse">Original response string.</param>
         /// <returns></returns>
-        private static TResponse BuildResponse<TResponse>(string clientResponse) where TResponse: class
+        private static TResponse BuildResponse<TResponse>(string clientResponse) where TResponse : class
         {
             if (string.IsNullOrEmpty(clientResponse)) return default;
             if (typeof(TResponse) == typeof(string)) return clientResponse as TResponse;

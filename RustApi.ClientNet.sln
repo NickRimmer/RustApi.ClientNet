@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustApi.ClientNet", "RustApi.ClientNet\RustApi.ClientNet.csproj", "{4377BCAA-FFC3-4B13-B1A5-8A8B32173BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RustApi.ClientNet", "RustApi.ClientNet\RustApi.ClientNet.csproj", "{4377BCAA-FFC3-4B13-B1A5-8A8B32173BF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{790EE7AC-2600-4211-B2AD-8587D2101C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustApi.ClientNet.Tests.Integration", "RustApi.ClientNet.Tests.Integration\RustApi.ClientNet.Tests.Integration.csproj", "{E1586299-2B6B-439A-A436-C4BC895CA1DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{4377BCAA-FFC3-4B13-B1A5-8A8B32173BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4377BCAA-FFC3-4B13-B1A5-8A8B32173BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4377BCAA-FFC3-4B13-B1A5-8A8B32173BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1586299-2B6B-439A-A436-C4BC895CA1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1586299-2B6B-439A-A436-C4BC895CA1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1586299-2B6B-439A-A436-C4BC895CA1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1586299-2B6B-439A-A436-C4BC895CA1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1586299-2B6B-439A-A436-C4BC895CA1DB} = {790EE7AC-2600-4211-B2AD-8587D2101C2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46F2CDFF-02E4-4876-B26B-C6482D5C1798}
