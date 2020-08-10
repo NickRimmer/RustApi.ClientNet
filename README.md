@@ -8,7 +8,7 @@ It is quite simple one (=
 ## How to use
 ```C#
 // define connection options
-var options = new ConnectionOptions("http://localhost:28017, "admin", "secret1");
+var options = new ConnectionOptions("http://localhost:28017", "admin", "secret1");
 
 // create connection instance
 IConnection connection = new Connection(options);
