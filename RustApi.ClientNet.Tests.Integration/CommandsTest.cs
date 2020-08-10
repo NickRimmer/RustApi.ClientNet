@@ -11,12 +11,8 @@ namespace RustApi.ClientNet.Tests.Integration
     /// Connection tests.
     /// To run these tests, game server should be started with test plugin.
     /// </summary>
-    public class ConnectionTests
+    public class CommandsTest
     {
-        private const string BaseUrl = "http://localhost:28017";
-        private const string UserName = "admin";
-        private const string UserSecret = "secret1";
-
         /// <summary>
         /// Common connection method to post data and retrieve response
         /// </summary>
@@ -24,7 +20,7 @@ namespace RustApi.ClientNet.Tests.Integration
         public async Task SendCommand_WithParams_Expected()
         {
             // arrange
-            var connection = GetConnection();
+            var connection = ConnectionHelper.GetConnection();
             var data = new Dictionary<string, object>
             {
                 {"p1", "1"},
@@ -45,7 +41,7 @@ namespace RustApi.ClientNet.Tests.Integration
         public async Task SendCommand_SecureNoData_Empty()
         {
             // arrange
-            var connection = GetConnection();
+            var connection = ConnectionHelper.GetConnection();
 
             // act
             await connection.SendCommandAsync("test_arguments_2");
@@ -55,20 +51,10 @@ namespace RustApi.ClientNet.Tests.Integration
         public async Task SendCommand_PublicNoData_Empty()
         {
             // arrange
-            var connection = GetConnection(true);
+            var connection = ConnectionHelper.GetConnection(true);
 
             // act
             await connection.SendCommandAsync("test_arguments_1");
-        }
-
-        private static IConnection GetConnection(bool isAnonymous = false)
-        {
-            var options = isAnonymous
-                ? new ConnectionOptions(BaseUrl, string.Empty, string.Empty)
-                : new ConnectionOptions(BaseUrl, UserName, UserSecret);
-
-            IConnection connection = new Connection(options);
-            return connection;
         }
     }
 }

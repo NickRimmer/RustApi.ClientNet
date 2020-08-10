@@ -25,7 +25,7 @@ namespace RustApi.ClientNet
         /// <inheritdoc />
         public async Task SendCommandAsync(string commandName, Dictionary<string, object> parameters = null)
         {
-            await SendCommandAsync<string>(commandName, parameters);
+            await SendCommandAsync<NoResponse>(commandName, parameters);
         }
 
         /// <inheritdoc />
@@ -37,6 +37,25 @@ namespace RustApi.ClientNet
             var result = PostDataAsync<TResponse[]>(route, requestData);
             return result;
         }
+
+        /// <inheritdoc />
+        public async Task CallHookAsync(string hookName, Dictionary<string, object> parameters = null)
+        {
+            await CallHookAsync<NoResponse>(hookName, parameters);
+        }
+
+        /// <inheritdoc />
+        public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters) where TResponse : class
+        {
+            const string route = "hook";
+            var requestData = new ApiHookRequest(hookName, parameters);
+
+            var result = PostDataAsync<TResponse>(route, requestData);
+            return result;
+        }
+
+        /// <inheritdoc />
+        public Task<string> SystemPing() => PostDataAsync<string>("system/ping");
 
         /// <summary>
         /// Post data to remote.
@@ -86,10 +105,16 @@ namespace RustApi.ClientNet
         private static TResponse BuildResponse<TResponse>(string clientResponse) where TResponse : class
         {
             if (string.IsNullOrEmpty(clientResponse)) return default;
-            if (typeof(TResponse) == typeof(string)) return clientResponse as TResponse;
+            if (typeof(TResponse) == typeof(NoResponse)) return default;
+            //if (typeof(TResponse) == typeof(string)) return clientResponse as TResponse;
 
             var result = JsonConvert.DeserializeObject<TResponse>(clientResponse);
             return result;
+        }
+
+        private abstract class NoResponse
+        {
+
         }
     }
 }
