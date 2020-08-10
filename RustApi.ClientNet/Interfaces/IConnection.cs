@@ -23,7 +23,7 @@ namespace RustApi.ClientNet.Interfaces
         /// <param name="commandName">Command name.</param>
         /// <param name="parameters">Request parameters.</param>
         /// <returns></returns>
-        Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters) where TResponse : class;
+        Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters = null) where TResponse : class;
 
         /// <summary>
         /// Send command.
@@ -40,7 +40,7 @@ namespace RustApi.ClientNet.Interfaces
         /// <param name="hookName">Command name.</param>
         /// <param name="parameters">Request parameters.</param>
         /// <returns></returns>
-        Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters) where TResponse : class;
+        Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters = null) where TResponse : class;
 
         /// <summary>
         /// Connection test method.

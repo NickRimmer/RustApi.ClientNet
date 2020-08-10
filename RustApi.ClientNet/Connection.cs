@@ -29,10 +29,10 @@ namespace RustApi.ClientNet
         }
 
         /// <inheritdoc />
-        public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters) where TResponse : class
+        public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters = null) where TResponse : class
         {
             const string route = "command";
-            var requestData = new ApiCommandRequest(commandName, parameters);
+            var requestData = new ApiCommandRequest(commandName, parameters ?? new Dictionary<string, object>());
 
             var result = PostDataAsync<TResponse[]>(route, requestData);
             return result;
@@ -45,10 +45,10 @@ namespace RustApi.ClientNet
         }
 
         /// <inheritdoc />
-        public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters) where TResponse : class
+        public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters = null) where TResponse : class
         {
             const string route = "hook";
-            var requestData = new ApiHookRequest(hookName, parameters);
+            var requestData = new ApiHookRequest(hookName, parameters ?? new Dictionary<string, object>());
 
             var result = PostDataAsync<TResponse>(route, requestData);
             return result;

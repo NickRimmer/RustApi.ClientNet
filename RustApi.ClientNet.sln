@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RustApi.ClientNet", "RustAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{790EE7AC-2600-4211-B2AD-8587D2101C2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustApi.ClientNet.Tests.Integration", "RustApi.ClientNet.Tests.Integration\RustApi.ClientNet.Tests.Integration.csproj", "{E1586299-2B6B-439A-A436-C4BC895CA1DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RustApi.ClientNet.Tests.Integration", "RustApi.ClientNet.Tests.Integration\RustApi.ClientNet.Tests.Integration.csproj", "{E1586299-2B6B-439A-A436-C4BC895CA1DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E7C2915-98C2-43B2-9666-5E780B6F07CE}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
