@@ -1,9 +1,5 @@
-using RustApi.ClientNet.Interfaces;
-using RustApi.ClientNet.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace RustApi.ClientNet.Tests.Integration
