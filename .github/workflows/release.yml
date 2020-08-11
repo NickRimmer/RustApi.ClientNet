@@ -1,4 +1,4 @@
-name: publish release
+name: Publish release
 on:
   workflow_dispatch:
   #push:
@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 3.1.200
 
       # Publish
-      - name: publish on version change
+      - name: Publish on version change
         id: publish_nuget
         uses: rohith/publish-nuget@v2
         with:
@@ -37,7 +37,7 @@ jobs:
           # VERSION_STATIC: 1.0.0
 
           # Flag to toggle git tagging, enabled by default
-          TAG_COMMIT: false
+          TAG_COMMIT: true
 
           # Format of the git tag, [*] gets replaced with actual version
           # TAG_FORMAT: v*
