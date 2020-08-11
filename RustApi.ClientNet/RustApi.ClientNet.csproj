@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Product>RustApi.ClientNet</Product>
+    <Company>Nick Rimmer</Company>
+    <Version>1.0.4</Version>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <Copyright>Nick Rimmer (DIPTEAM)</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
