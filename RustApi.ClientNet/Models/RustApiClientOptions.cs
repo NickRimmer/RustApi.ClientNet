@@ -7,27 +7,26 @@ namespace RustApi.ClientNet.Models
     /// </summary>
     public class RustApiClientOptions
     {
-        public RustApiClientOptions(string baseUrl, string userName, string secret)
-        {
-            BaseUrl = FormatUrl(baseUrl ?? throw new ArgumentNullException(nameof(baseUrl)));
-            UserName = userName ?? string.Empty;
-            Secret = secret ?? string.Empty;
-        }
+        private string _baseUrl;
 
         /// <summary>
         /// Base url to RustApi (e.g. 'http://localhost:28017').
         /// </summary>
-        public string BaseUrl { get; }
+        public string BaseUrl
+        {
+            get => _baseUrl;
+            set => _baseUrl = FormatUrl(value);
+        }
 
         /// <summary>
         /// Connection user name.
         /// </summary>
-        public string UserName { get; }
+        public string UserName { get; set; }
 
         /// <summary>
         /// User secret key.
         /// </summary>
-        public string Secret { get; }
+        public string Secret { get; set; }
 
         /// <summary>
         /// Format to general url.
