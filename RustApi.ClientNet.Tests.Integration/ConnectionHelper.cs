@@ -9,14 +9,14 @@ namespace RustApi.ClientNet.Tests.Integration
         public const string UserName = "admin";
         public const string UserSecret = "secret1";    
 
-        public static IConnection GetConnection(bool isAnonymous = false)
+        public static IRustApiClient GetConnection(bool isAnonymous = false)
         {
             var options = isAnonymous
-                ? new ConnectionOptions(ConnectionHelper.BaseUrl, string.Empty, string.Empty)
-                : new ConnectionOptions(ConnectionHelper.BaseUrl, ConnectionHelper.UserName, ConnectionHelper.UserSecret);
+                ? new RustApiClientOptions(ConnectionHelper.BaseUrl, string.Empty, string.Empty)
+                : new RustApiClientOptions(ConnectionHelper.BaseUrl, ConnectionHelper.UserName, ConnectionHelper.UserSecret);
 
-            IConnection connection = new Connection(options);
-            return connection;
+            IRustApiClient rustApiClient = new RustApiClient(options);
+            return rustApiClient;
         }
     }
 }

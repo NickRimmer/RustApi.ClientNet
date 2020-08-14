@@ -5,9 +5,9 @@ namespace RustApi.ClientNet.Models
     /// <summary>
     /// Connection options data model.
     /// </summary>
-    public class ConnectionOptions
+    public class RustApiClientOptions
     {
-        public ConnectionOptions(string baseUrl, string userName, string secret)
+        public RustApiClientOptions(string baseUrl, string userName, string secret)
         {
             BaseUrl = FormatUrl(baseUrl ?? throw new ArgumentNullException(nameof(baseUrl)));
             UserName = userName ?? string.Empty;

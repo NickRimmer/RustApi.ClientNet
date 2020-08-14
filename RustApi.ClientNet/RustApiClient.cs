@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 namespace RustApi.ClientNet
 {
     /// <inheritdoc />
-    public class Connection : IConnection
+    public class RustApiClient : IRustApiClient
     {
         private const string UserHeaderName = "ra_u";
         private const string SecretHeaderName = "ra_s";
 
-        private readonly ConnectionOptions _options;
+        private readonly RustApiClientOptions _clientOptions;
 
-        public Connection(ConnectionOptions options)
+        public RustApiClient(RustApiClientOptions clientOptions)
         {
-            _options = options ?? throw new ArgumentNullException(nameof(options));
+            _clientOptions = clientOptions ?? throw new ArgumentNullException(nameof(clientOptions));
         }
 
         /// <inheritdoc />
@@ -32,7 +32,7 @@ namespace RustApi.ClientNet
         public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters = null) where TResponse : class
         {
             const string route = "command";
-            var requestData = new ApiCommandRequest(commandName, parameters ?? new Dictionary<string, object>());
+            var requestData = new RustApiCommandRequest(commandName, parameters ?? new Dictionary<string, object>());
 
             var result = PostDataAsync<TResponse[]>(route, requestData);
             return result;
@@ -48,7 +48,7 @@ namespace RustApi.ClientNet
         public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters = null) where TResponse : class
         {
             const string route = "hook";
-            var requestData = new ApiHookRequest(hookName, parameters ?? new Dictionary<string, object>());
+            var requestData = new RustApiHookRequest(hookName, parameters ?? new Dictionary<string, object>());
 
             var result = PostDataAsync<TResponse>(route, requestData);
             return result;
@@ -68,7 +68,7 @@ namespace RustApi.ClientNet
         {
             using (var client = BuildClient())
             {
-                var url = $"{_options.BaseUrl}/{route}";
+                var url = $"{_clientOptions.BaseUrl}/{route}";
                 var body = data == default
                     ? string.Empty
                     : JsonConvert.SerializeObject(data);
@@ -88,10 +88,10 @@ namespace RustApi.ClientNet
         {
             var client = new WebClient();
 
-            client.BaseAddress = _options.BaseUrl;
+            client.BaseAddress = _clientOptions.BaseUrl;
             client.Encoding = Encoding.UTF8;
-            client.Headers.Add(UserHeaderName, _options.UserName);
-            client.Headers.Add(SecretHeaderName, _options.Secret);
+            client.Headers.Add(UserHeaderName, _clientOptions.UserName);
+            client.Headers.Add(SecretHeaderName, _clientOptions.Secret);
 
             return client;
         }

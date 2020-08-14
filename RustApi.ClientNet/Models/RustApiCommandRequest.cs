@@ -6,9 +6,9 @@ namespace RustApi.ClientNet.Models
     /// <summary>
     /// Request data for command.
     /// </summary>
-    public class ApiCommandRequest
+    public class RustApiCommandRequest
     {
-        public ApiCommandRequest(string commandName, Dictionary<string, object> parameters)
+        public RustApiCommandRequest(string commandName, Dictionary<string, object> parameters)
         {
             CommandName = commandName ?? throw new ArgumentNullException(nameof(commandName));
             Parameters = parameters ?? new Dictionary<string, object>();

@@ -1,20 +1,20 @@
 ![Validation build](https://github.com/NickRimmer/RustApi.ClientNet/workflows/Validation%20build/badge.svg?branch=master)
 
 # RustApi.ClientNet
-This is library for connection to Rust game server with [RustApi extension](https://github.com/NickRimmer/RustApi).
+This is library for RustApiClient to Rust game server with [RustApi extension](https://github.com/NickRimmer/RustApi).
 
 It is quite simple one (=
 
 ## How to use
 ```C#
-// define connection options
-var options = new ConnectionOptions("http://localhost:28017", "admin", "secret1");
+// define RustApiClient options
+var options = new RustApiClientOptions("http://localhost:28017", "admin", "secret1");
 
-// create connection instance
-IConnection connection = new Connection(options);
+// create RustApiClient instance
+IRustApiClient rustApiClient = new RustApiClient(options);
 ```
 
-Then you can use this `connection` **to call hooks**:
+Then you can use this `rustApiClient` **to call hooks**:
 
 ```C#
 // name of hook
@@ -27,10 +27,10 @@ var data = new Dictionary<string, object>
     {"value", 1},
 };
 
-var result1 = await connection.CallHookAsync<ExpectedResultType>(name, data);
-// var result1 = await connection.CallHookAsync<ExpectedResultType>(name);
-// await connection.CallHookAsync(name, data);
-// await connection.CallHookAsync(name);
+var result1 = await rustApiClient.CallHookAsync<ExpectedResultType>(name, data);
+// var result1 = await rustApiClient.CallHookAsync<ExpectedResultType>(name);
+// await rustApiClient.CallHookAsync(name, data);
+// await rustApiClient.CallHookAsync(name);
 ```
 
 Or you can execute **Api commands**:
@@ -46,15 +46,15 @@ var data = new Dictionary<string, object>
     {"p3", true},
 };
 
-var result1 = await connection.SendCommandAsync<string>(name, data);
-// var result1 = await connection.SendCommandAsync<string>(name);
-// await connection.SendCommandAsync(name, data);
-// await connection.SendCommandAsync(name);
+var result1 = await rustApiClient.SendCommandAsync<string>(name, data);
+// var result1 = await rustApiClient.SendCommandAsync<string>(name);
+// await rustApiClient.SendCommandAsync(name, data);
+// await rustApiClient.SendCommandAsync(name);
 ```
 
 Or just check if server **is online**:
 ```C#
-var result = await connection.SystemPing();
+var result = await rustApiClient.SystemPing();
 if (result != "Pong"){
     // oops
 }

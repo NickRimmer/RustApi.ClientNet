@@ -6,7 +6,7 @@ namespace RustApi.ClientNet.Interfaces
     /// <summary>
     /// Connection to Rust API
     /// </summary>
-    public interface IConnection
+    public interface IRustApiClient
     {
         /// <summary>
         /// Send command.

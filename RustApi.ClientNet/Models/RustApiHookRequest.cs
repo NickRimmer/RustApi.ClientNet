@@ -6,9 +6,9 @@ namespace RustApi.ClientNet.Models
     /// <summary>
     /// Request data for hook execution
     /// </summary>
-    public class ApiHookRequest
+    public class RustApiHookRequest
     {
-        public ApiHookRequest(string hookName, Dictionary<string, object> parameters)
+        public RustApiHookRequest(string hookName, Dictionary<string, object> parameters)
         {
             HookName = hookName ?? throw new ArgumentNullException(nameof(hookName));
             Parameters = parameters ?? new Dictionary<string, object>();
