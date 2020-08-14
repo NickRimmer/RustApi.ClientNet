@@ -1,4 +1,4 @@
-![Validation build](https://github.com/NickRimmer/RustApi.ClientNet/workflows/Validation%20build/badge.svg?branch=master)
+![Validation build](https://github.com/NickRimmer/RustApi.ClientNet/workflows/Validation%20build/badge.svg?branch=master) [![NuGet package](https://buildstats.info/nuget/RustApi.ClientNet)](https://www.nuget.org/packages/RustApi.ClientNet/)
 
 # RustApi.ClientNet
 This is library for RustApiClient to Rust game server with [RustApi extension](https://github.com/NickRimmer/RustApi).
