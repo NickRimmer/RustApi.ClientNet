@@ -21,12 +21,12 @@ namespace RustApi.ClientNet.Models
         /// <summary>
         /// Connection user name.
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// User secret key.
         /// </summary>
-        public string Secret { get; set; }
+        public string Secret { get; set; } = string.Empty;
 
         /// <summary>
         /// Format to general url.

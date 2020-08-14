@@ -29,7 +29,7 @@ namespace RustApi.ClientNet
         }
 
         /// <inheritdoc />
-        public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters = null) where TResponse : class
+        public Task<TResponse[]> SendCommandAsync<TResponse>(string commandName, Dictionary<string, object> parameters = null) 
         {
             const string route = "command";
             var requestData = new RustApiCommandRequest(commandName, parameters ?? new Dictionary<string, object>());
@@ -45,7 +45,7 @@ namespace RustApi.ClientNet
         }
 
         /// <inheritdoc />
-        public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters = null) where TResponse : class
+        public Task<TResponse> CallHookAsync<TResponse>(string hookName, Dictionary<string, object> parameters = null)
         {
             const string route = "hook";
             var requestData = new RustApiHookRequest(hookName, parameters ?? new Dictionary<string, object>());
@@ -64,7 +64,7 @@ namespace RustApi.ClientNet
         /// <param name="route">Endpoint url.</param>
         /// <param name="data">Data to send.</param>
         /// <returns></returns>
-        private async Task<TResponse> PostDataAsync<TResponse>(string route, object data = default) where TResponse : class
+        private async Task<TResponse> PostDataAsync<TResponse>(string route, object data = default)
         {
             using (var client = BuildClient())
             {
@@ -102,7 +102,7 @@ namespace RustApi.ClientNet
         /// <typeparam name="TResponse">Expected response type.</typeparam>
         /// <param name="clientResponse">Original response string.</param>
         /// <returns></returns>
-        private static TResponse BuildResponse<TResponse>(string clientResponse) where TResponse : class
+        private static TResponse BuildResponse<TResponse>(string clientResponse)
         {
             if (string.IsNullOrEmpty(clientResponse)) return default;
             if (typeof(TResponse) == typeof(NoResponse)) return default;
